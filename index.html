@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head lang="en">
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>iscroll</title>
+		<style>
+		* {margin:0; border:none; padding:0;}
+		.list {list-style:none;}
+		.list li {height:30px;}
+		.list li:nth-child(odd) {background-color:#f00;}
+		.list li:nth-child(even) {background-color:#ff0;}
+		</style>
+    </head>
+	<body ng-controller="iscrollCtrl">
+	<div class="box">
+		<ul class="list" iscroll pull="refresh()">
+			<li>01</li>
+			<li>02</li>
+			<li>03</li>
+			<li>04</li>
+			<li>05</li>
+			<li>06</li>
+			<li>07</li>
+			<li>08</li>
+			<li>09</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+			<li>16</li>
+			<li>17</li>
+			<li>18</li>
+			<li>19</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript">
+	var app = angular.module('app', []);
+	app.controller('iscrollCtrl',["$scope", function($scope){
+		$scope.refresh = function(){
+			console.log('refresh');
+		};
+	}]);
+	
+	app.directive('iscroll', function() {
+		return {
+			scope: {
+				text: '&',
+				pull: '&'
+			},
+			restrict: 'AE',
+			link: function(scope, elem, attr, ctrl) {
+			
+				
+				console.log(scope.text);
+				console.log(elem);
+				elem.bind('click', function(){
+					scope.pull();
+				});
+			}
+		};
+	});
+	</script>
+    </body>
+</html>
